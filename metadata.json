@@ -1,0 +1,5 @@
+{
+  "name": "Ads.txt Batch Checker",
+  "description": "A professional tool to batch check ads.txt status for multiple domains, featuring real-time progress, detailed logs, and Excel export.",
+  "requestFramePermissions": []
+}

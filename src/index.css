@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-bg-primary: var(--bg-primary);
+  --color-text-headline: var(--text-headline);
+  --color-text-paragraph: var(--text-paragraph);
+  --color-accent-link: var(--accent-link);
+  --color-card-bg: var(--card-bg);
+  --color-card-border: var(--card-border);
+  --color-success-bg: var(--success-bg);
+  --color-success-text: var(--success-text);
+  --color-error-bg: var(--error-bg);
+  --color-error-text: var(--error-text);
+  --color-warning-bg: var(--warning-bg);
+  --color-warning-text: var(--warning-text);
+  --color-info-bg: var(--info-bg);
+  --color-info-text: var(--info-text);
+  
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Courier Prime", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  :root {
+    /* Warm Retro / Vintage Terminal Theme */
+    --bg-primary: #2B2626; /* Dark warm gray/sepia */
+    --text-headline: #E6D5B8; /* Vintage cream */
+    --text-paragraph: #BFA888; /* Muted cream */
+    --accent-link: #D96C4A; /* Retro rust/orange */
+    
+    --card-bg: #363030; /* Slightly lighter warm gray */
+    --card-border: #594D4D; /* Muted brown border */
+    
+    /* Status colors adjusted for vintage feel */
+    --success-bg: rgba(107, 142, 35, 0.15); /* Olive Drab */
+    --success-text: #8FBC8F; /* Dark Sea Green */
+    --error-bg: rgba(178, 34, 34, 0.15); /* Firebrick */
+    --error-text: #E9967A; /* Dark Salmon */
+    --warning-bg: rgba(218, 165, 32, 0.15); /* Goldenrod */
+    --warning-text: #F4A460; /* Sandy Brown */
+    --info-bg: rgba(70, 130, 180, 0.15); /* Steel Blue */
+    --info-text: #87CEEB; /* Sky Blue */
+  }
+
+  body {
+    @apply bg-bg-primary text-text-paragraph font-sans antialiased min-h-screen relative;
+    background-image: 
+      radial-gradient(circle at 50% 50%, rgba(230, 213, 184, 0.03), transparent 70%);
+  }
+
+  /* CRT Scanline Effect */
+  body::after {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+    z-index: 2;
+    background-size: 100% 4px, 6px 100%;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-text-headline font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-none border-2 font-medium transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed relative z-10;
+  }
+  .btn-primary {
+    @apply bg-accent-link border-accent-link text-[#2B2626] shadow-[4px_4px_0px_0px_rgba(89,77,77,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(89,77,77,1)];
+  }
+  .btn-secondary {
+    @apply bg-card-bg text-text-headline border-card-border shadow-[4px_4px_0px_0px_rgba(89,77,77,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(89,77,77,1)] hover:border-accent-link hover:text-accent-link;
+  }
+  .card {
+    @apply bg-card-bg rounded-none border-2 border-card-border shadow-[8px_8px_0px_0px_rgba(20,18,18,0.5)] relative overflow-hidden z-10;
+  }
+  .input-field {
+    @apply w-full bg-[#242020] border-2 border-card-border rounded-none px-4 py-3 text-text-headline focus:outline-none focus:border-accent-link transition-all font-mono text-sm placeholder-text-paragraph/50 shadow-inner;
+  }
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-none text-xs font-bold border border-current/30 uppercase tracking-wider;
+  }
+}
+
+/* Custom scrollbar for textareas and tables */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-[#242020] border-l-2 border-card-border;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-card-border border-2 border-[#242020] hover:bg-accent-link transition-colors;
+}
+
